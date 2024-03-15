@@ -18,6 +18,7 @@ function PieChart({ chartData }) {
           }
         }}
       />
+      {/* https://admin-dashboard-jet-eight.vercel.app/#dashboard */}
     </div>
   );
 }

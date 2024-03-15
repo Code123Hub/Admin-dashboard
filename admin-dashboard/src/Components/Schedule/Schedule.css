@@ -1,76 +1,76 @@
 
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* gap: 8px; */
-    /* margin-top: 10px; */
-    /* justify-items: center; */
-    
-  }
+  display: flex;
+  flex-wrap: wrap;
+  /* gap: 8px; */
+  /* margin-top: 10px; */
+  /* justify-items: center; */
   
-  .event-card {
-   
-    margin-top: 30px;
-    width: 800px;
-    height: 150px;
-    margin-left: 40px;
-    background-color: rgb(248, 245, 245) !important;
-  }
+}
 
-  .schedule-heading{
-    text-align: left;
-    margin-left: 50px;
-  }
+.event-card {
+ 
+  margin-top: 30px;
+  width: 800px;
+  height: 150px;
+  margin-left: 40px;
+  background-color: rgb(248, 245, 245) !important;
+}
 
-  .schedule-button{
-  position: absolute;
-  /* top: 0; */
-  color: gray;
-  }
+.schedule-heading{
+  text-align: left;
+  margin-left: 50px;
+}
 
-  .date-div{
-    /* display: flex; */
-    /* align-items: center; */
-    text-align: center;
-    color: rgb(252, 178, 67);
-    /* margin-left: 50px; */
-    border-radius: 100%;
-    background-color: blanchedalmond;
-    padding: 3px;
-    font-weight: 600;
-  }
+.schedule-button{
+position: absolute;
+/* top: 0; */
+color: gray;
+}
 
-  .schedule-h5{
-    font-size: larger;
-    color:rgb(114, 111, 111);
-    text-transform: uppercase;
-    font-weight: 500 !important;
-  }
+.date-div{
+  /* display: flex; */
+  /* align-items: center; */
+  text-align: center;
+  color: rgb(252, 178, 67);
+  /* margin-left: 50px; */
+  border-radius: 100%;
+  background-color: blanchedalmond;
+  padding: 3px;
+  font-weight: 600;
+}
 
-  .schedule-div-typo{
-    color: rgb(252, 178, 67);
-    /* margin-right: 10px; */
-    
-  }
+.schedule-h5{
+  font-size: larger;
+  color:rgb(114, 111, 111);
+  text-transform: uppercase;
+  font-weight: 500 !important;
+}
 
-  @media screen and (max-width: 300px) {
-    /* .card-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 10px;
-        justify-items: center;
-      }
-       */
-      .event-card {
-       
-        margin-top: 20px;
-        width: 250px;
-        margin-left: 10px;
-      }
-    
-      .schedule-heading{
-        text-align: left;
-        margin-left: 50px;
-      }
-  }
+.schedule-div-typo{
+  color: rgb(252, 178, 67);
+  /* margin-right: 10px; */
+  
+}
+
+@media screen and (max-width: 300px) {
+  /* .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      justify-items: center;
+    }
+     */
+    .event-card {
+     
+      margin-top: 20px;
+      width: 250px;
+      margin-left: 10px;
+    }
+  
+    .schedule-heading{
+      text-align: left;
+      margin-left: 50px;
+    }
+}
