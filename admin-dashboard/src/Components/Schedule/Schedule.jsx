@@ -1,8 +1,10 @@
 
 
-import React,{useState} from "react";
+import React,{useState , useEffect} from "react";
 import { scheduleData } from "../../Data/ScheduleData";
-import { Button, Card, CardContent, Typography, colors, TextField, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle } from "@mui/material";
+import { Button, Card, CardContent, Typography, colors, TextField, Dialog, DialogActions, DialogContent,DialogContentText, DialogTitle, Modal,Box,
+ 
+  Grid, } from "@mui/material";
 import "./Schedule.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faClockFour, faDisplay, faLocationDot } from "@fortawesome/free-solid-svg-icons";
@@ -10,18 +12,44 @@ import { faAdd, faClockFour, faDisplay, faLocationDot } from "@fortawesome/free-
 
 function Schedule() {
 
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  
+  const [fetchEventScheduleData, setFetchEventScheduleData] = useState([]);
 
+ 
   const handleAddEvent = () => {
-    setShowModal(true);
+    setIsModalOpen(true);
   };
-  const handleClose = () => {
-    setShowModal(false);
-  };  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   function formatDate(dateString) {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   }
+
+
+  
+  useEffect(() => {
+    const fetchEventScheduleData = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/admin/event-schedule");
+        const data = await response.json();
+        setFetchEventScheduleData(data.data);
+      } catch (error) {
+        console.error("Error fetching speaker data:", error);
+      }
+    };
+
+    fetchEventScheduleData();
+  }, []);
+
 
   return (
     <div>
@@ -30,11 +58,86 @@ function Schedule() {
       {/* <Button><FontAwesomeIcon icon={faAdd}/></Button> */}
 
       </div>
-      
+      <Modal open={isModalOpen} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            maxWidth: 400,
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            Add Event 
+          </Typography>
+          <form>
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <TextField
+                  label="Title"
+                  fullWidth
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  label="Location"
+                  fullWidth
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="Time"
+                  fullWidth
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  label="End Time"
+                  fullWidth
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  required
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <TextField
+                  type="date"
+                  fullWidth
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  required
+                />
+              </Grid>
+              
+            </Grid>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginTop: "1rem" }}
+            >
+              Submit
+            </Button>
+          </form>
+        </Box>
+      </Modal>
 
       <div className="card-container">
 
-        {scheduleData.map((event, _id) => (
+        {fetchEventScheduleData.map((event, _id) => (
           <Card key={_id} className="event-card">
             <CardContent>
             {_id === 0 && <FontAwesomeIcon icon={faAdd} className="schedule-button" onClick={handleAddEvent}/>}
