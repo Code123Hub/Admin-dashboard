@@ -4,7 +4,10 @@ import React from 'react'
 
 function ContactDetail() {
   return (
-    <div>ContactDetail</div>
+    <div>
+        ContactDetail
+        
+    </div>
   )
 }
 
